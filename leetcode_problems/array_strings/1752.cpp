@@ -111,3 +111,4 @@ int main() {
 }
 // Time Complexity	O(n)
 // Space Complexity O(1)
+//This problem is solved using a Single Pass Greedy Observation, which is an efficient way to check the properties of the array in one traversal.
