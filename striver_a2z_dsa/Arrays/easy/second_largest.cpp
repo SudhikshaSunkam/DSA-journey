@@ -1,82 +1,163 @@
-// Second Largest Element
-
-// Given an array of integers nums, return the second-largest element in the array. If the second-largest element does not exist, return -1.
-
-
-// Example 1
-
-// Input: nums = [8, 8, 7, 6, 5]
-
-// Output: 7
-
-// Explanation:
-
-// The largest value in nums is 8, the second largest is 7
-
-#include <iostream>
-#include <vector>
-#include <climits>
-
+//brute force approach
+#include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
-public:
-    int secondLargestElement(vector<int>& nums) {
+// Function to find the second smallest and second largest elements in the array
+void getElements(int arr[], int n)
+{
+    // Edge case when the array has less than 2 elements
+    if(n == 0 || n == 1)
+        cout << -1 << " " << -1 << endl;  // Print -1 for both second smallest and second largest if the array has less than 2 elements
+    
+    // Sort the array to easily find the second smallest and second largest elements
+    sort(arr, arr + n);
 
-        int n = nums.size();
+    // Second smallest element is at index 1 after sorting
+    int small = arr[1]; 
 
-        if(n < 2) {
-            return -1;
-        }
+    // Second largest element is at index n-2 after sorting
+    int large = arr[n - 2]; 
 
-        int large = INT_MIN;
-        int secondLarge = INT_MIN;
+    // Output the second smallest and second largest elements
+    cout << "Second smallest is " << small << endl;
+    cout << "Second largest is " << large << endl;
+}
 
-        for(int i = 0; i < n; i++) {
-
-            if(nums[i] > large) {
-                secondLarge = large;
-                large = nums[i];
-            }
-            else if(nums[i] > secondLarge && nums[i] != large) {
-                secondLarge = nums[i];
-            }
-        }
-
-        // If second largest does not exist
-        if(secondLarge == INT_MIN) {
-            return -1;
-        }
-
-        return secondLarge;
-    }
-};
-
-int main() {
-
-    Solution obj;
-
-    int n;
-    cout << "Enter size of array: ";
-    cin >> n;
-
-    vector<int> nums(n);
-
-    cout << "Enter elements: ";
-    for(int i = 0; i < n; i++) {
-        cin >> nums[i];
-    }
-
-    int ans = obj.secondLargestElement(nums);
-
-    if(ans == -1) {
-        cout << "Second largest element does not exist" << endl;
-    }
-    else {
-        cout << "Second largest element is: " << ans << endl;
-    }
+int main()
+{
+    // Initialize the array with elements
+    int arr[] = {1, 2, 4, 6, 7, 5};
+    
+    // Calculate the size of the array
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    // Call the function to find and print the second smallest and second largest elements
+    getElements(arr, n);
 
     return 0;
 }
+// Time Complexity: O(n log n), where n is the size of the array, due to the sorting step.
+// Space Complexity: O(1), as we are using a constant amount of space to store
+
+//better approach
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// // Function to find the second smallest and second largest elements in the array
+// void getElements(int arr[], int n)
+// {
+//     // Edge case: when the array has less than 2 elements
+//     if (n == 0 || n == 1)
+//         cout << -1 << " " << -1 << endl;  // If only one element, print -1 for both second smallest and second largest
+
+//     // Initialize variables to track the smallest, second smallest, largest, and second largest elements
+//     int small = INT_MAX, second_small = INT_MAX;
+//     int large = INT_MIN, second_large = INT_MIN;
+//     int i;
+
+//     // Find the smallest and largest elements in the array
+//     for (i = 0; i < n; i++) {
+//         small = min(small, arr[i]);  // Update the smallest element
+//         large = max(large, arr[i]);  // Update the largest element
+//     }
+
+//     // Find the second smallest and second largest elements
+//     for (i = 0; i < n; i++) {
+//         // If the current element is smaller than second_small and not equal to the smallest, update second_small
+//         if (arr[i] < second_small && arr[i] != small)
+//             second_small = arr[i];
+        
+//         // If the current element is larger than second_large and not equal to the largest, update second_large
+//         if (arr[i] > second_large && arr[i] != large)
+//             second_large = arr[i];
+//     }
+
+//     // Output the second smallest and second largest elements
+//     cout << "Second smallest is " << second_small << endl;
+//     cout << "Second largest is " << second_large << endl;
+// }
+
+// int main()
+// {
+//     // Initialize the array with elements
+//     int arr[] = {1, 2, 4, 6, 7, 5};
+
+//     // Calculate the size of the array
+//     int n = sizeof(arr) / sizeof(arr[0]);
+
+//     // Call the function to find and print the second smallest and second largest elements
+//     getElements(arr, n);
+
+//     return 0;
+// }
+//time complexity: O(n), where n is the size of the array, as we traverse the array twice.
+//space complexity: O(1), as we are using a constant amount of space to store
+
+//optimal approach
+// #include <iostream>
+// #include <vector>
+// #include <climits>
+
+// using namespace std;
+
+// class Solution {
+// public:
+//     int secondLargestElement(vector<int>& nums) {
+
+//         int n = nums.size();
+
+//         if(n < 2) {
+//             return -1;
+//         }
+
+//         int large = INT_MIN;
+//         int secondLarge = INT_MIN;
+
+//         for(int i = 0; i < n; i++) {
+
+//             if(nums[i] > large) {
+//                 secondLarge = large;
+//                 large = nums[i];
+//             }
+//             else if(nums[i] > secondLarge && nums[i] != large) {
+//                 secondLarge = nums[i];
+//             }
+//         }
+
+//         // If second largest does not exist
+//         if(secondLarge == INT_MIN) {
+//             return -1;
+//         }
+
+//         return secondLarge;
+//     }
+// };
+
+// int main() {
+
+//     Solution obj;
+
+//     int n;
+//     cout << "Enter size of array: ";
+//     cin >> n;
+
+//     vector<int> nums(n);
+
+//     cout << "Enter elements: ";
+//     for(int i = 0; i < n; i++) {
+//         cin >> nums[i];
+//     }
+
+//     int ans = obj.secondLargestElement(nums);
+
+//     if(ans == -1) {
+//         cout << "Second largest element does not exist" << endl;
+//     }
+//     else {
+//         cout << "Second largest element is: " << ans << endl;
+//     }
+
+//     return 0;
+// }
 //time complexity: O(n)
 //space complexity: O(1)

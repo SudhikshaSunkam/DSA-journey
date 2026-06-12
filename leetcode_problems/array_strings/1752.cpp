@@ -14,54 +14,7 @@
 // Output: true
 // Explanation: [1,2,3,4,5] is the original sorted array.
 // You can rotate the array by x = 2 positions to begin on the element of value 3: [3,4,5,1,2].
-// Example 2:
 
-// Input: nums = [2,1,3,4]
-// Output: false
-// Explanation: There is no sorted array once rotated that can make nums.
-// Example 3:
-
-// Input: nums = [1,2,3]
-// Output: true
-// Explanation: [1,2,3] is the original sorted array.
-// You can rotate the array by x = 0 positions (i.e. no rotation) to make nums.
-
-// Approach Type
-
-// Single Pass Greedy Observation
-// Circular Sorted Order Check
-// Counting Breaks in Sorted Order
-
-// Intuition
-
-// A sorted rotated array can have at most one point where the order decreases.
-
-// Example:
-// 3 4 5 1 2
-//       ^
-
-// Only one break exists:
-
-// 5 > 1
-// If there are more than one such breaks, the array cannot be sorted and rotated.
-
-// Example of invalid array:
-
-// 3 4 1 5 2
-// Breaks:
-
-// 4 > 1
-// 5 > 2
-// So answer becomes false.
-
-// Approach
-
-// Traverse the array once.
-// Count how many times:
-// nums[i] > nums[(i+1)%n]
-// %n helps compare the last element with the first element.
-// If count ≤ 1 → return true
-// Else → return false
 
 #include <iostream>
 #include <vector>
